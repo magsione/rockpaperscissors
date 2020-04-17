@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<body>
+
+   <script>
+
+       
+    let playerSelection = 'Rock';
+    let computerSelection = "";
+    let playerScore = 0;
+    let computerScore = 0;
+    let isRoundValid = false;
+    let winner = "";
+    let randNum = 1;
+
+function computerPlay() {
+
+
+
+    randNum = Math.floor(Math.random() * 10 + 1);
+    if (randNum < 5) {
+        return "Rock";
+    } else if (randNum == 5 || randNum == 6) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+}
+
+function playRound(playerSelection, computerSelection){
+
+    isRoundValid = false;
+    let playerSel = playerSelection.toLowerCase();
+
+    let computerSel = computerSelection.toLowerCase();
+
+    if (playerSel != "") {
+
+            if (playerSel == computerSel) {
+                isRoundValid = false;
+            } else if ( playerSel == "rock" && computerSel == "paper"){
+                computerScore+=1;
+                isRoundValid = true;
+            } else if ( playerSel == "rock" && computerSel == "scissors"){
+                playerScore+=1;
+                isRoundValid = true;
+            } else if ( playerSel == "paper" && computerSel == "rock"){
+                playerScore+=1;
+                isRoundValid = true;
+            } else if ( playerSel == "paper" && computerSel == "scissors"){
+                computerScore+=1;
+                isRoundValid = true;
+            } else if ( playerSel == "scissors" && computerSel == "rock"){
+                computerScore+=1;
+                isRoundValid = true;
+            } else if ( playerSel == "scissors" && computerSel == "paper"){
+                playerScore+=1;
+                isRoundValid = true;
+            }
+        
+    } else isRoundValid = false;
+
+
+}
+
+function game(){
+
+    var nOfGames = 5;
+    var i = 0
+
+    playerScore = 0;
+    computerScore = 0;
+
+    while ( i < nOfGames){
+        i++;
+        playerSelection = prompt("Paper, Rock or Scissors?");
+        computerSelection = computerPlay();
+        playRound(playerSelection,computerSelection);
+        console.log("GAME " + i + " --------- Player: " + playerSelection + " | Computer: " + computerSelection + "(" + randNum +")");
+        if (!isRoundValid){
+            console.log("Game is draw or not valid input.");
+            i--;
+        }
+    }
+
+    if (playerScore > computerScore) {
+        console.log("The Winner is player with score of: " + playerScore + " | Computer score: " + computerScore);
+    } else {
+        console.log("The Winner is computer with score of: " + computerScore + " | Player score: " + playerScore);
+
+    }
+}
+
+game();
+
+</script> 
+
+ 
+
+
+
+
+</body>
+
